@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>سؤالات متداول — آموزش فتوشاپ</title>
+  <link rel="icon" href="img/tITLE.png">
+  <meta name="description" content="صفحه سؤالات متداول آموزش فتوشاپ با طراحی شیشه‌ای، مینیمال و کاملاً سازگار با موبایل." />
+  <meta name="theme-color" content="#0f172a" />
+  <!-- فونت دانا -->
+  <link href="https://cdn.fontcdn.ir/dana/dana.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --panel: rgba(255,255,255,.08);
+      --border: rgba(255,255,255,.15);
+      --text: #e7ecf2;
+      --muted: #b8c0cc;
+      --accent: #22d3ee;
+      --brand: #6ee7ff;
+      --brand-2: #a78bfa;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius-xl: 22px;
+      --radius-2xl: 28px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f8fb;
+        --panel: rgba(255,255,255,.65);
+        --border: rgba(15, 23, 42, .08);
+        --text: #0b1220;
+        --muted: #475569;
+        --shadow: 0 10px 30px rgba(15,23,42,.10);
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-rounded, "Vazirmatn", 'Dana', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans Arabic", "Noto Naskh Arabic", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% -10%, rgba(103, 232, 249,.18), transparent 60%),
+        radial-gradient(1000px 700px at 110% 10%, rgba(167,139,250,.18), transparent 55%),
+        radial-gradient(600px 400px at 80% 120%, rgba(56,189,248,.16), transparent 60%),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .container { min-height: 100dvh; display: grid; place-items: center; padding: 28px 20px 40px; }
+    .shell { width: min(980px, 100%); display: grid; gap: 28px; }
+
+    /* Header */
+    .header {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      backdrop-filter: blur(10px) saturate(120%);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-2xl);
+      padding: clamp(16px, 3.4vw, 28px);
+      position: relative; overflow: hidden; isolation: isolate;
+    }
+    .header::before, .header::after {
+      content: ""; position: absolute; inset: -40% auto auto -40%; width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(110,231,255,.35), transparent 60%);
+      filter: blur(18px); z-index: -1; animation: float 12s ease-in-out infinite; transform: translate3d(0,0,0);
+    }
+    .header::after { inset: auto -40% -40% auto; background: radial-gradient(circle at 60% 60%, rgba(167,139,250,.35), transparent 60%); animation-duration: 15s; }
+    @keyframes float { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(12px) } }
+
+    .title { font-size: clamp(22px, 3.2vw, 34px); font-weight: 800; letter-spacing: -0.015em; }
+    .subtitle { color: var(--muted); margin-top: 6px; line-height: 1.7; }
+
+    /* FAQ */
+    .faq {
+      display: grid; gap: 14px;
+    }
+    details.question {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      backdrop-filter: blur(8px) saturate(120%);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+      overflow: hidden;
+    }
+    details.question[open] { border-color: rgba(255,255,255,.25); box-shadow: 0 16px 36px rgba(0,0,0,.35); }
+
+    summary {
+      list-style: none; cursor: pointer;
+      display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px;
+      padding: 18px 20px; font-weight: 700; font-size: 17px; letter-spacing: -.01em;
+    }
+    summary::-webkit-details-marker { display: none; }
+
+    .chev { width: 22px; height: 22px; transition: transform .2s ease; opacity: .9; }
+    details[open] .chev { transform: rotate(180deg); }
+
+    .answer { padding: 0 20px 18px; color: var(--muted); line-height: 1.9; }
+
+    .note {
+      margin-top: 10px; padding: 10px 12px; border-radius: 14px; border: 1px dashed var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); font-size: 14px;
+    }
+
+    /* Card-style link */
+    .card {
+      position: relative; overflow: hidden; border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      backdrop-filter: blur(8px) saturate(120%);
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,.35); border-color: rgba(255,255,255,.25); }
+    .card-inner { display: grid; grid-template-columns: 1fr; gap: 14px; padding: 20px; }
+    .card h3 { margin: 0; font-size: 20px; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.7; }
+    .cta-link { display: inline-block; margin-top: 12px; padding: 10px 14px; border-radius: 14px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04)); }
+
+    /* Footer */
+    .footer { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 8px 6px; color: var(--muted); }
+    .foot-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .foot-links a { padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); font-size: 13px; }
+
+    @media (max-width: 760px) { summary { font-size: 16px; } .answer { font-size: 15px; } }
+    summary:focus-visible, .foot-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 14px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <main class="shell" aria-label="سؤالات متداول آموزش فتوشاپ">
+      
+      <!-- بخش FAQ اصلی -->
+      <header class="header">
+        <h1 class="title">راهنمای نصب ویدم</h1>
+        <p class="subtitle">هنرجویان قدیمی و جدید دوره آپولون<br>
+          تمامی آموزش‌های دوره آپولون فتوشاپ از طریق اپلیکیشن جدید دوره (با نام ویدم) بر روی تلفن همراه و سیستم شما در دسترس خواهد بود.
+          <br>
+          برای دانلود این اپلیکیشن، کافی است روی گزینه‌های زیر همین متن کلیک کنید.
+          <br>
+          سپس با شماره ثبت‌نام خود، وارد نرم افزار شوید.</p>
+      </header>
+
+      
+
+      <!-- بخش دانلود و راهنما -->
+      <section class="faq" aria-label="دانلود و راهنمای نصب">
+          <!-- کارت دانلود -->
+          <div class="card">
+            <div class="card-inner">
+              <h3>دانلود برنامه</h3>
+              <p>برنامه رایان برای آموزش فتوشاپ در سه نسخه ویندوز، اندروید و آیفون آماده شده است.</p>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                <a href="https://videm.s3.ir-thr-at1.arvanstorage.ir/desktop/videm-1.2.0.zip" class="cta-link"> دانلود برای ویندوز 10 و 11</a>
+                <a href="https://videm.s3.ir-thr-at1.arvanstorage.ir/desktop/videm-1.2.0_7-8.zip" class="cta-link"> دانلود برای ویندوز 7 و 8</a>
+                <a href="https://videm.ir/app-universal-release.apk" class="cta-link">دانلود برای اندروید</a>
+                <a href="https://sibapp.com/applications/VidEm" class="cta-link">دانلود برای آیفون</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ویژگی‌ها -->
+          <div class="card">
+            <div class="card-inner">
+              <h3>ویژگی‌های برنامه</h3>
+              <p>
+                • تجربه کاربری راحت‌تر<br>
+                • کیفیت بسیار بالاتر ویدیوها<br>
+                • امکان دانلود درون‌برنامه‌ای و مشاهده بدون اینترنت<br>
+                • پیگیری دقیق تر پیشرفت در طی دوره
+              </p>
+            </div>
+          </div>
+
+          <!-- راهنمای نصب فتوشاپ -->
+          <div class="card">
+            <div class="card-inner">
+              <h3>راهنمای نصب فتوشاپ</h3>
+              <p>برای نصب فتوشاپ، رایان توصیه می‌کند بر اساس نسخه خود از لینک‌های زیر استفاده کنید:</p>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                <a href="https://aparat.com/v/ssuyn3s" class="cta-link">راهنمای نصب 2018 به قبل</a>
+                <a href="https://aparat.com/v/mbhky83" class="cta-link">راهنمای نصب 2019 به بعد</a>
+              </div>
+              <p class="note">در صورت بروز مشکل، می‌توانید با رایان از طریق تلگرام یا ایتا پیام بدهید.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- فوتر -->
+      <footer class="footer">
+        <p>&copy; © 2025 آپولون</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

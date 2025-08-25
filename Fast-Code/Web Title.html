@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>آموزش فتوشاپ — آپولون</title>
+  <link rel="icon" href="img/tITLE.png">
+  <meta name="description" content="لندینگ لینک‌ها و معرفی آموزش‌های حرفه‌ای فتوشاپ — طرح مدرن، چشم‌نواز و مینیمال." />
+  <meta name="theme-color" content="#0f172a" />
+  <style>
+    /* CSS Variables for easy theming */
+    :root {
+      --bg: #0b0f19;          /* base background */
+      --panel: rgba(255,255,255,.08); /* glass */
+      --border: rgba(255,255,255,.15);
+      --text: #e7ecf2;
+      --muted: #b8c0cc;
+      --brand: #6ee7ff;       /* cyan */
+      --brand-2: #a78bfa;     /* violet */
+      --accent: #22d3ee;      /* cyan-400 */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius-xl: 22px;
+      --radius-2xl: 28px;
+    }
+    
+    @font-face {
+      font-family: dana;
+      src: url(font/dana\ bold.ttf) format(truetype);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f8fb;
+        --panel: rgba(255,255,255,.65);
+        --border: rgba(15, 23, 42, .08);
+        --text: #0b1220;
+        --muted: #475569;
+        --shadow: 0 10px 30px rgba(15, 23, 42, .10);
+      }
+    }
+
+    /* Reset & base */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-rounded, "Vazirmatn", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans Arabic", "Noto Naskh Arabic", sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 10% -10%, rgba(103, 232, 249,.18), transparent 60%),
+                  radial-gradient(1000px 700px at 110% 10%, rgba(167,139,250,.18), transparent 55%),
+                  radial-gradient(600px 400px at 80% 120%, rgba(56,189,248,.16), transparent 60%),
+                  var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 10%; display: block; }
+
+    .container {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 28px 20px 40px;
+    }
+
+    .shell {
+      width: min(980px, 100%);
+      display: grid;
+      gap: 28px;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      backdrop-filter: blur(10px) saturate(120%);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-2xl);
+      padding: clamp(16px, 3.4vw, 28px);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .header::before, .header::after {
+      content: "";
+      position: absolute; inset: -40% auto auto -40%;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(110,231,255,.35), transparent 60%);
+      filter: blur(18px);
+      z-index: -1;
+      animation: float 12s ease-in-out infinite;
+      transform: translate3d(0,0,0);
+    }
+
+    .header::after {
+      inset: auto -40% -40% auto; background: radial-gradient(circle at 60% 60%, rgba(167,139,250,.35), transparent 60%);
+      animation-duration: 15s;
+    }
+
+    @keyframes float { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(12px) } }
+
+    .profile {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+    .title { font-size: clamp(22px, 3.2vw, 34px); font-weight: 800; letter-spacing: -0.015em; font-family: dana; }
+    .subtitle { color: var(--muted); margin-top: 6px; line-height: 1.7; }
+
+    .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .badge {
+      padding: 8px 12px; font-size: 13px; border-radius: 999px; border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      backdrop-filter: blur(6px);
+    }
+
+    /* Link cards */
+    .links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 18px;
+    }
+
+    .card {
+      position: relative; overflow: hidden; border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      backdrop-filter: blur(8px) saturate(120%);
+    }
+
+    .card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,.35); border-color: rgba(255,255,255,.25); }
+    .card:active { transform: translateY(-1px) scale(.99); }
+
+    .card-inner { display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 14px; padding: 16px 18px; }
+
+    .icon {
+      width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+    }
+
+    .card h3 { margin: 0; font-size: 18px; letter-spacing: -.01em; }
+    .card p  { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+
+    .cta {
+      padding: 10px 14px; border-radius: 14px; font-size: 14px; border: 1px solid var(--border);
+      background: radial-gradient(120px 80px at 10% 10%, rgba(110,231,255,.35), transparent 65%),
+                  radial-gradient(100px 90px at 90% 90%, rgba(167,139,250,.35), transparent 60%),
+                  linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+      backdrop-filter: blur(6px);
+      transition: opacity .2s ease;
+      white-space: nowrap;
+    }
+    .card:hover .cta { opacity: .95; }
+
+    /* Footer */
+    .footer {
+      display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 8px 6px; color: var(--muted);
+    }
+    .foot-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .foot-links a { padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); font-size: 13px; }
+
+    /* Responsive */
+    @media (max-width: 760px) {
+      .profile { grid-template-columns: 84px 1fr; }
+      .avatar { width: 84px; border-radius: 20px; }
+      .links { grid-template-columns: 1fr; }
+    }
+    .my-logo{
+      display: flex;
+      align-items: center;
+    }
+    /* Focus styles for accessibility */
+    .card:focus-visible, .cta:focus-visible, .foot-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Utility: visually-hidden */
+    .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <main class="shell" aria-label="لینک‌ها و معرفی آموزش فتوشاپ">
+
+      <!-- Header / Profile -->
+      <header class="header">
+        <div class="profile">
+          <figure class="avatar" aria-hidden="true">
+          </figure>
+          <div>
+            <div class="my-logo">
+            <img src="img/tITLE.png" alt="لوگو سایت">
+            <h1 class="title">آموزش فتوشاپ آپولون</h1>
+          </div>
+            <p class="subtitle">یادگیری اصولی و پروژه‌محورِ <strong>Adobe Photoshop</strong> — از صفر تا حرفه‌ای؛ مناسب طراحان گرافیک، تولیدکنندگان محتوا و هر کسی که می‌خواهد تصاویر خیره‌کننده بسازد.</p>
+            <div class="badges">
+              <span class="badge">ساعت ها محتوای ویدیویی</span>
+              <span class="badge">پروژه‌محور</span>
+              <span class="badge">فایل‌ها و پرسش‌وپاسخ</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Link Cards -->
+      <section class="links" aria-label="لینک‌های اصلی">
+        <!-- Courses -->
+        <a class="card" href="training/Training.html" target="_blank" rel="noopener" aria-label="دوره جامع فتوشاپ">
+          <div class="card-inner">
+            <div class="icon" aria-hidden="true">
+              <!-- book icon -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 4h9a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M8 8h8M8 12h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>دوره جامع فتوشاپ</h3>
+              <p>از مبانی تا تکنیک‌های حرفه‌ای — بروزرسانی رایگان</p>
+            </div>
+            <span class="cta">مشاهده</span>
+          </div>
+        </a>
+
+        <!-- YouTube -->
+        <a class="card" href="https://www.aparat.com/v/foyq34" target="_blank" rel="noopener" aria-label="یوتیوب آموزش فتوشاپ">
+          <div class="card-inner">
+            <div class="icon" aria-hidden="true">
+              <!-- play icon -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M22 12s0-5-1-6-2-1-3-1H6C5 5 4 5 3 6s-1 6-1 6 0 5 1 6 2 1 3 1h12c1 0 2 0 3-1s1-6 1-6Z" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M10 15V9l6 3-6 3Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3>ویدئو صفر آپولون فتوشاپ 1404</h3>
+              <p>پیش از شرکت در لایو شروع دوره، مشاهده این ویدئو الزامیست</p>
+            </div>
+            <span class="cta">بزن بریم</span>
+          </div>
+        </a>
+
+        <!-- Portfolio -->
+        <a class="card" href="Live And Workshop/Live And Workshop.html" target="_blank" rel="noopener" aria-label="نمونه‌کارها">
+          <div class="card-inner">
+            <div class="icon" aria-hidden="true">
+              <!-- sparkles icon -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 3l2.1 4.9L19 10l-4.9 2.1L12 17l-2.1-4.9L5 10l4.9-2.1L12 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M19.5 16l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>لایو و ورکشاپ های تخصصی</h3>
+              <p>راهنمای ورود به جلسات آنلاین دوره</p>
+			</div>
+            <span class="cta">تماشا</span>
+          </div>
+        </a>
+
+        <!-- Blog / Tips -->
+        <a class="card" href="Taklif/Taklif.html" target="_blank" rel="noopener" aria-label="بلاگ و نکات فتوشاپ">
+          <div class="card-inner">
+            <div class="icon" aria-hidden="true">
+              <!-- pen icon -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M3 21l3.8-1 11-11a2.8 2.8 0 0 0-4-4l-11 11L3 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M14 5l5 5" stroke="currentColor" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <div>
+              <h3>سامانه تکالیف</h3>
+              <p>ارسال تکالیف و مشاهده نمرات</p>
+            </div>
+            <span class="cta">مطالعه</span>
+          </div>
+        </a>
+
+      
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>© <span id="year">2025</span>آپولون</p>
+        <nav class="foot-links" aria-label="پیوندهای کمکی">
+          
+          <a href="faq/Faq.html">قوانین</a>
+          <a href="faq/Last-Faq/Last-Faq.html">پشتیبانی</a>
+          <a href="https://t.me/+hXyHgosPLu8wODdk">کانال تلگرام</a>
+          <a href="https://share.google/LaM0ReCjusiTOH7a2">کانال ایتا</a>
+        </nav>
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    // Update year automatically
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

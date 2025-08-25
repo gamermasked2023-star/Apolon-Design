@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>سؤالات متداول — آموزش فتوشاپ</title>
+  <link rel="icon" href="img/tITLE.png">
+  <meta name="description" content="صفحه سؤالات متداول آموزش فتوشاپ با طراحی شیشه‌ای، مینیمال و کاملاً سازگار با موبایل." />
+  <meta name="theme-color" content="#0f172a" />
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --panel: rgba(255,255,255,.08);
+      --border: rgba(255,255,255,.15);
+      --text: #e7ecf2;
+      --muted: #b8c0cc;
+      --accent: #22d3ee;
+      --brand: #6ee7ff;
+      --brand-2: #a78bfa;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius-xl: 22px;
+      --radius-2xl: 28px;
+    }
+    @font-face {
+      font-family: dana;
+      src: url(font/dana\ bold.ttf) format(truetype);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f8fb;
+        --panel: rgba(255,255,255,.65);
+        --border: rgba(15, 23, 42, .08);
+        --text: #0b1220;
+        --muted: #475569;
+        --shadow: 0 10px 30px rgba(15,23,42,.10);
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-rounded, "Vazirmatn", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans Arabic", "Noto Naskh Arabic", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% -10%, rgba(103, 232, 249,.18), transparent 60%),
+        radial-gradient(1000px 700px at 110% 10%, rgba(167,139,250,.18), transparent 55%),
+        radial-gradient(600px 400px at 80% 120%, rgba(56,189,248,.16), transparent 60%),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .container { min-height: 100dvh; display: grid; place-items: center; padding: 28px 20px 40px; }
+    .shell { width: min(980px, 100%); display: grid; gap: 28px; }
+
+    /* Header */
+    .header {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      backdrop-filter: blur(10px) saturate(120%);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-2xl);
+      padding: clamp(16px, 3.4vw, 28px);
+      position: relative; overflow: hidden; isolation: isolate;
+    }
+    .header::before, .header::after {
+      content: ""; position: absolute; inset: -40% auto auto -40%; width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(110,231,255,.35), transparent 60%);
+      filter: blur(18px); z-index: -1; animation: float 12s ease-in-out infinite; transform: translate3d(0,0,0);
+    }
+    .header::after { inset: auto -40% -40% auto; background: radial-gradient(circle at 60% 60%, rgba(167,139,250,.35), transparent 60%); animation-duration: 15s; }
+    @keyframes float { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(12px) } }
+
+    .title { font-size: clamp(22px, 3.2vw, 34px); font-weight: 800; letter-spacing: -0.015em; font-family: dana; }
+    .subtitle { color: var(--muted); margin-top: 6px; line-height: 1.7; }
+
+    /* FAQ */
+    .faq { display: grid; gap: 14px; }
+    details.question {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      backdrop-filter: blur(8px) saturate(120%);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+      overflow: hidden;
+    }
+    details.question[open] { border-color: rgba(255,255,255,.25); box-shadow: 0 16px 36px rgba(0,0,0,.35); }
+
+    summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; padding: 18px 20px; font-weight: 700; font-size: 17px; letter-spacing: -.01em; }
+    summary::-webkit-details-marker { display: none; }
+    .chev { width: 22px; height: 22px; transition: transform .2s ease; opacity: .9; }
+    details[open] .chev { transform: rotate(180deg); }
+    .answer { padding: 0 20px 18px; color: var(--muted); line-height: 1.9; }
+    .note { margin-top: 10px; padding: 10px 12px; border-radius: 14px; border: 1px dashed var(--border); background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); font-size: 14px; }
+    
+    /* Contact CTA card */
+    .contact-card{ border:1px solid var(--border); background: radial-gradient(160px 100px at 10% 10%, rgba(110,231,255,.25), transparent 60%), radial-gradient(140px 100px at 90% 90%, rgba(167,139,250,.25), transparent 60%), linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); backdrop-filter: blur(10px) saturate(120%); border-radius: var(--radius-2xl); box-shadow: var(--shadow); padding: 18px 20px; display: grid; gap: 12px; }
+    .contact-card h3{ margin:0; font-size: 20px; letter-spacing:-.01em; }
+    .contact-card p{ margin:0; color:var(--muted); line-height:1.9; }
+    .btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 2px; }
+    .btn{ padding:10px 14px; border-radius:14px; border:1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04)); text-decoration:none; font-size:14px; }
+
+    /* Footer */
+    .footer { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 8px 6px; color: var(--muted); }
+    .foot-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .foot-links a { padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); font-size: 13px; }
+
+    @media (max-width: 760px) { summary { font-size: 16px; } .answer { font-size: 15px; } }
+    summary:focus-visible, .foot-links a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 14px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <main class="shell" aria-label="سؤالات متداول آموزش فتوشاپ">
+    
+      <header class="header">
+        <h1 class="title">قوانین و مقررات دوره آپولون</h1>
+        <p class="subtitle">کمی درباره ما:
+          آکادمی رایان با یه هدف بزرگ و هیجان‌انگیز کارش رو شروع کرده: ارتقا دادن هنر دیجیتال ایران و رسوندنش به سطح جهانی
+          
+          ما معتقدیم که تو ایران کلی استعداد ناب وجود داره که اگه مسیر درست آموزش و تمرین رو پیدا کنن، می‌تونن تو دنیا حرفای بزرگی برای گفتن داشته باشن. دوره های آپولون فتوشاپ و آپولون پریمیر هم دقیقا با همین هدف طراحی شده؛ اینکه یه تجربه آموزشی مدرن و کاربردی باشه تا بتونه شما رو تو مسیر حرفه‌ای شدن و جهانی شدن همراهی کنه.
+          
+          هدف نهایی ما اینه که کنار شما، هنر دیجیتال ایران رو به جایی برسونیم که تو هر جای دنیا بدرخشه!
+          
+          ممنونیم که در این مسیر همراهمون هستید.</p>
+      </header>
+
+      <section class="faq" aria-label="لیست سؤالات و دسترسی">
+        <!-- Contact CTA -->
+        <div class="contact-card" id="apollon-yar">
+          <h3 style="font-family: dana;">دسترسی به واحد آپولون‌یارها</h3>
+          <p>برای پیگیری سریع‌تر امور ثبت‌نام، پشتیبانی دوره‌ها و پاسخ‌گویی، از طریق لینک زیر اقدام کنید. <strong>در صورت وصل نشدن تماس، می‌توانید از طریق تلگرام یا ایتا پیام خود را ارسال نمایید.</strong></p>
+          <div class="btns">
+            <a class="btn" href="tel:+989927074606" aria-label="تماس تلفنی با واحد آپولون‌یارها">تماس مستقیم</a>
+            <a class="btn" href="https://t.me/+hXyHgosPLu8wODdk" target="_blank" rel="noopener" aria-label="ارسال پیام در تلگرام">تلگرام</a>
+            <a class="btn" href="https://share.google/LaM0ReCjusiTOH7a2" target="_blank" rel="noopener" aria-label="ارسال پیام در ایتا">ایتا</a>
+          </div>
+        </div>
+        
+        <!-- 10 FAQ boxes -->
+        <details class="question"><summary><span>دوره آپولون دقیقا چیه ؟</span><svg class="chev" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>دوره آپولون یه برنامه جامع برای یادگیری فتوشاپ یا پریمیر(طبق دوره‌ای که درآن ثبت‌نام نمودید) هست که در طول ۱۲ هفته شما رو از سطح مبتدی به یک متخصص حرفه‌ای تبدیل می‌کنه. این دوره با سبک آموزشی مدرن و محتوای کاملاً کاربردی طراحی شده تا هم مهارت‌های عملی شما رو تقویت کنه و هم تجربه‌ای جذاب از یادگیری بهتون بده.
+
+          این دوره شامل ۴ بخش اصلیه که اون رو به یک مسیر یادگیری کامل و موثر تبدیل کرده:
+            ۱.	آموزش‌های جذاب: بیش از ۱۰۰ ویدیوی آموزشی کوتاه و حرفه‌ای که با سبک سرگرم‌کننده (content gamification) ارائه میشن تا یادگیری راحت و جذاب باشه.
+            ۲.	تعامل گروهی و پشتیبانی فردی: امکان ارتباط روزانه با تیم پشتیبانی، پرسش و پاسخ در گروه با هم دوره‌ای ها، و دریافت راهنمایی‌های شخصی از آپولون‌یارهای حرفه‌ای.
+            ۳.	تکالیف بدقت طراحی‌شده: تمرین‌های هفتگی روی فایل‌های خام، برای تثبیت مهارت‌ها و آماده شدن برای پروژه‌های واقعی.
+            ۴.	ورکشاپ‌های تخصصی آنلاین: جلسات تصویری ماهانه با حضور استاد رایان، برای یادگیری عمیق‌تر و تعامل مستقیم با سایر شرکت‌کنندگان.
+          آپولون فقط یه دوره آموزشی نیست؛ اینجا قراره یاد بگیریم، تمرین کنیم، و کنار هم رشد کنیم تا در نهایت بتونید وارد دنیای حرفه‌ای طراحی و تدوین بشید.</p></div></details>
+        <details class="question"><summary><span>تعهدات آکادمی رایان در قبال شما چیست؟</span><svg class="chev" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>ما در آکادمی رایان متعهدیم که در مسیر یادگیری و رشد حرفه‌ای شما، در کنار شما باشیم. هدف ما فراتر از ارائه آموزش‌های باکیفیته؛ ما خودمون رو مسئول موفقیت شما می‌دونیم و برای اینکه این مسیر براتون هموار، موثر و جذاب باشه، تعهدات زیر رو پذیرفته‌ایم:
+          ۱.	ارائه آموزش‌های درجه‌یک:
+        تمامی محتوای دوره ها، از ویدیوهای آموزشی گرفته تا ورکشاپ‌ها، با استانداردهای بالا طراحی شده تا شما بهترین و کاربردی‌ترین آموزش‌ها رو دریافت کنید.
+          ۲.	پشتیبانی مستمر و همراهی واقعی:
+        ما اینجا هستیم تا پاسخ‌گوی سوالاتتون باشیم، در چالش‌ها همراهتون باشیم و هیچ وقت اجازه ندیم احساس تنهایی کنید. تیم پشتیبانی ما همیشه آماده راهنمایی و کمک به شماست.
+          ۳.	ایجاد محیط یادگیری مثبت و انگیزشی:
+        فضایی که در دوره آپولون تجربه می‌کنید، طوری طراحی شده که یادگیری رو براتون لذت‌بخش و الهام‌بخش کنه. ما اهمیت زیادی به تعامل گروهی، احترام متقابل و روحیه همکاری می‌دیم. بنابراین متعهدیم هر کار لازمی برای حفظ این احترام رو انجام بدیم.
+          ۴.	تمرکز روی رشد و پیشرفت شما:
+        هدف نهایی ما اینه که نه‌تنها مهارت‌های فتوشاپ رو به شما آموزش بدیم، بلکه بهتون کمک کنیم اعتمادبه‌نفس و توانایی لازم برای ورود به دنیای حرفه‌ای طراحی رو پیدا کنید. این تعهد را با طراحی دقیق تکالیف، پروژه پایانی و پیگیری‌های حین دوره عملی میکنیم.
+          ۵.	مسئولیت‌پذیری در ارائه بهترین تجربه:
+        ما متعهدیم که همیشه با پاسخ‌گویی، احترام به شما و بهبود مداوم خدماتمون، تجربه‌ای فراتر از یک دوره آموزشی رو براتون رقم بزنیم.
+        
+        در آکادمی رایان، ما به موفقیت شما باور داریم و برای رسیدن بهش، کنار شما ایستادیم. این فقط یه تعهد نیست؛ یه قول واقعیه! 
+        هرچند وظیفه ما رعایت کامل این تعهداته، اما برای ارائه تجربه‌ای حتی بهتر، از شما هم می‌خوایم با نظرات و پیشنهادات ارزشمندتون، ما رو در این مسیر همراهی کنید تا بتونیم خدماتمون رو به بالاترین سطح ممکن برسونیم.  .</p></div></details>
+        <details class="question"><summary><span>تعهدات هنرجویان آکادمی چیست؟</span><svg class="chev" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>برای ایجاد یک تجربه یادگیری مؤثر و مثبت در دوره آپولون، از هنرجویان انتظار می‌رود که به چند نکته مهم توجه داشته باشند. این تعهدات بصورت حداقلی و به منظور حفظ کیفیت دوره و احترام به یکدیگر و اعضای تیم برگزاری تدوین شده است.
+          عدم رعایت هر یک از قوانین و تعهداتی که در ادامه می‌آید باعث غیرفعال شدن عضویت هنرجو در دوره میگردد و در این شرایط مبلغی عودت داده نخواهد شد.
+          از سوی دیگر رعایت دقیق این موارد به همگان کمک می‌کند تا در فضایی امن و حمایتگر به یادگیری و پیشرفت بپردازند.
+          
+                 ۱. انجام به موقع تکالیف
+          هر هنرجو موظف است در طول دوره مجموعاً هفت تکلیف را انجام دهد و آن‌ها را در زمان‌بندی مشخص شده ارسال کند. هر تکلیف در دوره فتوشاپ شامل ۳ عکس تمرینی و در دوره پریمیر یک ویدیو تمرینی، مطابق دستورالعمل هایی است که دراختیارتان قرار میگیرد. در صورتی که انجام تکالیف برایتان امکان‌پذیر نبود یا نیاز به زمان بیشتری داشتید، کافی است هرچه زودتر به آپولون یار خود اطلاع دهید تا هماهنگی‌های لازم انجام شود.
+          
+                 ۲. احترام به هم‌دوره‌ای‌ها و رعایت شئونات
+          همه بایستی با یکدیگر (هم‌دوره‌ای ها و اعضای برگزاری) به صورت محترمانه و مؤدبانه تعامل کنیم. ایجاد یک فضای مثبت و حمایتی میان هنرجویان نه تنها به تجربه یادگیری کمک می‌کند، بلکه باعث ایجاد دوستی‌ها و ارتباطات مفید خواهد شد.
+          همچنین، باتوجه به اینکه آکادمی رایان عضو رسمی سازمان فنی و حرفه‌ای ایران میباشد، هنرجویان موظفند به شئونات اخلاقی و قوانین جمهوری اسلامی ایران احترام بگذارند.
+          در این راستا، حفظ حریم خصوصی یکدیگر نیز از اهمیت بالایی برخوردار است. هنرجویان باید از ایجاد ارتباط خارج از موضوع دوره با یکدیگر خودداری کنند.
+          
+          نکته: هنرجویان لازم است انتقادات و پیشنهادات خود برای برگزاری بهتر دوره را به مسئولان برگزاری منتقل نمایند و از ایجاد هرگونه تشویش در فضای گروه خودداری کنند. بررسی و تشخیص این موضوع به عهده مدیر برگزاری دوره خواهد بود و عدم رعایت منجر به تعلیق هنرجو میگردد.
+          
+                 ۳. تکمیل فرم ثبت‌نام با اطلاعات صحیح خودتان
+          هنرجویان موظفند فرم ثبت‌نام را با دقت و اطلاعات کامل و صحیح تکمیل کنند. این اطلاعات برای تسهیل ارتباط و ارائه خدمات بهتر به شما ضروری است. همچنین، هر هنرجو تنها مجاز به استفاده از محتوای دوره برای خود است و اجازه ندارد به دیگران اطلاعات، ویدیوها و محتواهای دوره را انتقال دهد. این تعهد به منظور حفظ حقوق مالکیت معنوی دوره و ایجاد یک فضای یادگیری منحصربه‌فرد برای هنرجویان است.
+          
+                 ۴. پرداخت به موقع اقساط:
+          هنرجویانی که بصورت اقساطی ثبت‌نام نمودند موظفند اقساط دوره را در زمان‌بندی که با هماهنگی خودشان مشخص شده پرداخت کنند. پرداخت به موقع این اقساط برای حفظ دسترسی به محتوای دوره الزامیست. در صورتی که به هر دلیلی نمیتوانستید اقساط را در زمان تعیین شده پرداخت کنید، لطفاً هرچه سریع‌تر با آپولون یار خود ارتباط بگیرید تا راه‌حل مناسبی پیدا کنیم، چرا که درصورت عدم پرداخت و عدم هماهنگی، دسترسی به کل امکانات دوره به حالت تعلیق درمی‌آید. و امکان دسترسی صرفا به بخشی از دوره(مطابق اقساط پرداخت شده) وجود ندارد..</p></div></details>
+        <details class="question"><summary><span>اگر به انجام تکالیف یک هفته نرسیدم، میتوانم مهلت بیشتری بگیرم؟</span><svg class="chev" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>برای درخواست زمان بیشتر و جلوگیری از کم شدن قلب ها، کافیه برای آپولون یار خود پیام بفرستید و زمان جدیدی که میخواهید آن تکلیف را ارسال کنید را اعلام کنید.</p></div></details>
+        <details class="question"><summary><span>درصورتی که چند هفته از دوره عقب افتادیم، آیا امکان تغییر ترم ثبت‌نامی وجود داره؟</span><svg class="chev" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>بله، اگر از نظر زمانی امکان همراهی با ترمی که در آن شرکت نموده‌اید را ندارید، می‌توانید درخواست تغییر ترم دهید و دوره را در زمان مناسبی از ابتدا آغاز کنید. توجه داشته باشید که مهلت اعلام درخواست تغییر ترم به آپولون یارتان، تا هفته ششم دوره است و لازم است طی درخواست خود زمان دوره جایگزین مدنظرتان را اعلام نموده و هزینه‌ی مربوطه را پرداخت نمایید.
+          البته درصورتی که پیش از شروع ترمی که در آن ثبت نام نمودید قصد تغییر ترم داشته باشید نیاز به پرداخت هزینه نیست. </p></div></details>
+        <details class="question"><summary><span>هزینه تغییر ترم چقدر است؟</span><svg class="chev" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>هزینه تغییر ترم فقط ۸ درصد قیمت بدون تخفیف دوره، یعنی ۱ میلیون تومان، در نظر گرفته شده است. این هزینه به‌دلیل نیاز به مدیریت فرآیند تغییر و هماهنگی‌های لازم برای ثبت‌نام مجدد هنرجو است. از آنجایی که هر دوره آموزشی به‌طور جداگانه نیازمند برنامه‌ریزی برای هنرجو و منابع انسانی مربوطه است، لازم است تا از ابتدا برنامه‌ریزی مناسبی برای هر دوره انجام شود.
+          با این حال، برای تسهیل دسترسی هنرجویان به دوره،(افرادی که پس از شروع دوره به هر دلیلی امکان همراهی مستمر با دوره پیدا نمیکنند و نیاز به تغییر ترم دارند) در اولین نوبت تغییر ترم، این هزینه توسط صندوق تسهیلات آکادمی پرداخت می‌شود، یعنی اگر اولین بار است که تغییر ترم میدهید نیاز به پرداخت هزینه‌ای توسط شما نیست.</p></div></details>
+        <details class="question"><summary><span>شرایط انصراف از دوره یا عودت وجه به چه شکل است؟</span><svg class="chev" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>ما همواره تلاش می‌کنیم تا شما تجربه‌ی یادگیری رضایت‌بخشی داشته باشید و از دوره به بهترین شکل ممکن بهره‌مند شوید. اما در عین حال، اگر به هر دلیلی تا دو هفته ابتدایی دوره (تا پایان ۱۴امین روز از اولین ترمی که برای آن ثبت‌نام نمودید) تصمیم به انصراف گرفتید، میتوانید درخواست انصراف خود را با آپولون یارتان در دوره در میان گذارید تا هزینه پرداختی‌تان طی یک هفته عودت گردد.
+          در صورت ثبت درخواست پس از چهاردهمین روز از اولین دوره‌ای که در آن شرکت نمودید، امکان بازپرداخت هیچ بخشی از هزینه پرداختی وجود ندارد.
+          لازم به ذکر است درصورت ثبت درخواست تغییر دوره(تغییر ترم) امکان انصراف و عودت وجه وجود ندارد(حتی در ابتدای دوره)</p></div></details>
+        <details class="question"><summary><span>من نیاز به پیگیری/ارسال تکالیف/دریافت گواهی ندارم. چطور میتونم از دوره استفاده کنم؟</span><svg class="chev" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>اگر نیازی به پیگیری، ارسال تکالیف یا دریافت گواهی ندارید، می‌توانید از دوره به‌صورت «خودخوان» استفاده کنید. با این حال، لازم به ذکر است که ما این گزینه را توصیه نمی‌کنیم و فقط در صورتی که در شرایطی قرار دارید که نمی‌توانید طبق نظم دوره پیش بروید و حتی امکان تغییر ترم (شروع در زمان مناسب‌تری) ندارید، این گزینه قابل دسترسی است.
+
+          در این حالت، شما به محتوای دوره دسترسی خواهید داشت و می‌توانید آن را در زمان مناسب خود مشاهده و مطالعه کنید. این گزینه به شما این امکان را می‌دهد که با سرعت و روش خودتان مطالب را یاد بگیرید بدون اینکه نگرانی از بابت تحویل تکالیف یا شرکت در جلسات داشته باشید.
+          
+          لطفاً توجه داشته باشید که برای ثبت درخواست ادامه دوره به‌صورت خودخوان، لازم است به آپولون یار خود پیام بدهید.</p></div></details>
+        <details class="question"><summary><span>مهلت دسترسی به محتوای دوره چقدر است؟</span><svg class="chev" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>دوره آپولون به‌گونه‌ای طراحی شده است که شباهت زیادی به دوره‌های حضوری دارد و با پکیج‌های آموزشی که توسط اساتید مختلف به‌فروش می‌رسند، تفاوت دارد.
+          این دوره طی سه ماه برگزار میشوند و در این مدت شما بصورت هفتگی به آموزش های جدید دسترسی پیدا میکنید، در عین حال مدت زمان دسترسی به محتوای آموزشی دوره آپولون، از ۳ ماه به ۱۲ ماه افزایش پیدا کرده است. این تغییر به‌منظور پاسخ به نیاز هنرجویان برای مرور مطالب ویدئویی و تمرین بیشتر طراحی شده است. این زمان اضافی به شما این امکان را می‌دهد که چندین بار ویدئوها و فایل‌های آموزشی را مشاهده کنید و با تمرین مکرر، مفاهیم را به‌خوبی در ذهن خود جا بیندازید.
+          
+          ما در آکادمی رایان به کیفیت آموزش و تجربه یادگیری هنرجویان اهمیت زیادی می‌دهیم و اگر شرایط فراهم باشد، با کمال میل دسترسی شما را تمدید خواهیم کرد. هدف ما این است که بهترین تجربه یادگیری ممکن را برای شما فراهم کنیم و به شما کمک کنیم تا به هدف‌هایتان در همان ماه های برگزاری دوره دست یابید تا حتی نیازی به مرور مجدد پیش نیاید.</p></div></details>
+        <details class="question"><summary><span>شرایط دریافت گواهی پایان دوره و عضویت در گروه سرداران آپولون چگونه است؟</span><svg class="chev" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>دریافت گواهی پایان دوره آپولون، بخشی از مسیر جذاب یادگیری شماست و با رعایت چند مرحله ساده، به راحتی می‌توانید به این هدف دست پیدا کنید:
+          ۱.	ارسال تمامی تکالیف دوره: تکالیف دوره برای کمک به یادگیری و تمرین شما طراحی شده‌اند. کافی است همه تکالیف هفت‌گانه را ارسال کنید و میانگین نمره حداقل ۲ ستاره را کسب کنید.
+          ۲.	ارسال پروژه پایانی: پروژه پایانی فرصتی است تا خلاقیت و مهارت‌هایی که آموخته‌اید را به نمایش بگذارید. این پروژه شامل:
+          •	طراحی عکس سردار آپولونی، یکی از بخش‌های هیجان‌انگیز دوره.
+          •	تهیه رزومه کاری حرفه‌ای که نمایانگر پیشرفت شماست.
+          •	ارائه اکانت کاری برای معرفی بهتر خودتان.
+        راهنمای تکمیل پروژه پایانی به طور کامل در ویدئوی پایانی دوره توضیح داده شده است.
+        
+        با تکمیل این مراحل، شما نه تنها گواهی معتبر دوره آپولون را دریافت خواهید کرد، بلکه به جمع منتخب سرداران آپولون نیز خواهید پیوست. این گروه ویژه، جایی است برای شبکه‌سازی، تعامل با دیگر هنرجویان موفق، و استفاده از فرصت‌های منحصربه‌فردی که آکادمی رایان برای اعضای خود در نظر گرفته است.
+        
+        پیش به سوی دستاوردهای بزرگ!</p></div></details>
+      </section>
+      <footer class="footer">
+        <p>© <span id="year">2025</span>آپولون</p>
+        <nav class="foot-links" aria-label="پیوندهای کمکی">
+          <a href="Last-Faq/Last-Faq.html">پشتیبانی</a>
+        </nav>
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
